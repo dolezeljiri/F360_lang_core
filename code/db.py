@@ -1,5 +1,6 @@
 
 from ast import arg
+from unittest import expectedFailure
 import config
 import sqlite3
 from sqlite3 import Error
@@ -25,12 +26,18 @@ class Db():
     def makeTable(self, nameTable, argument):
         try:
             self.cur.execute('CREATE TABLE {} ({})'.format(nameTable, argument))
-            Log.writeLog("INFO", "Tabulka {} byla śpěšně vytvořena.".format(nameTable))
+            self.con.commit()
+            Log.writeLog('INFO', 'Tabulka {} byla úspěšně vytvořena.'.format(nameTable))
         except Error:
             Log.writeLog("ERROR", Error)
 
-    def dropTable(nameTable):
-        pass
+    def dropTable(self, nameTable):
+        try:
+            self.cur.execute('DROP TABLE {}'.format(nameTable))
+            self.con.commit()
+            Log.writeLog('INFO', 'Tabulka {} byla úspěšně smazána.'.format(nameTable))
+        except Error:
+            Log.writeLog('ERROR', Error)
 
     def select(nameTable, args):
         pass
@@ -38,5 +45,7 @@ class Db():
     def insert(nameTable, args):
         pass
 
+    def update():
+        pass
     
 
