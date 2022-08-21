@@ -1,14 +1,33 @@
+
+from ast import arg
+import config
 import sqlite3
+from sqlite3 import Error
+from code.log import Log
+
 
 class Db():
-    def __init__(self, nameDbFile) -> None:
-        pass 
+    def __init__(self, ) -> None:
+        self.con = self.connect()
+        self.cur = self.cursor()
 
     def connect(self):
-        pass   
+        try:
+            Log.writeLog("INFO", "Success connection to database {}".format(config.sqliteName))
+            return sqlite3.connect(config.sqliteName)
+        except Error:
+            Log.writeLog("ERROR", Error)
 
-    def makeTable(nameTable):
-        pass
+    def cursor(self):
+        return self.con.cursor()
+           
+
+    def makeTable(self, nameTable, argument):
+        try:
+            self.cur.execute('CREATE TABLE {} ({})'.format(nameTable, argument))
+            Log.writeLog("INFO", "Tabulka {} byla śpěšně vytvořena.".format(nameTable))
+        except Error:
+            Log.writeLog("ERROR", Error)
 
     def dropTable(nameTable):
         pass
@@ -18,4 +37,6 @@ class Db():
 
     def insert(nameTable, args):
         pass
+
+    
 
