@@ -39,10 +39,10 @@ class Db():
         except Error:
             Log.writeLog('ERROR', Error)
 
+    def insert(self, nameTable, args):
+        self.con.execute()
+    
     def select(nameTable, args):
-        pass
-
-    def insert(nameTable, args):
         pass
 
     def update():
