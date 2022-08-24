@@ -1,0 +1,18 @@
+Table name: fusionVersion
+
+id INTEGER primary key
+commandName text
+devLavel text
+translation_cz text
+tranlastion_de text
+protected boolean
+
+
+
+Table name: transtation
+id INTEGER PRIMARY key
+devLabel
+
+Table name: willTranslation
+
+
