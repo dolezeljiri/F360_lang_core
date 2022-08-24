@@ -8,6 +8,7 @@ from code.log import Log
 
 
 class Db():
+
     def __init__(self, ) -> None:
         self.con = self.connect()
         self.cur = self.cursor()
@@ -40,7 +41,7 @@ class Db():
             Log.writeLog('ERROR', Error)
 
     def insert(self, nameTable, args):
-        self.con.execute()
+        pass
     
     def select(nameTable, args):
         pass
